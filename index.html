@@ -2,6 +2,11 @@
   <head>
     <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet' />
     <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css' rel='stylesheet' />
+
+    <!-- include the core styles -->
+    <link rel="stylesheet" href="PATH_TO_FILE/alertify.core.css" />
+    <!-- include a theme, can be included into the core instead of 2 separate files -->
+    <link rel="stylesheet" href="PATH_TO_FILE/alertify.default.css" />
   </head>
 
   <body class="container-fluid">
@@ -15,4 +20,9 @@
       <button class="btn btn-primary">Confirm!</button>
     </div>
   </body>
+
+    <!-- ideally at the bottom of the page -->
+    <!-- also works in the <head> -->
+    <script src="alertify.min.js"></script>
+
 </html>
