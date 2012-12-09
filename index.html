@@ -14,20 +14,25 @@
       <h1>Hello Alertify!</h1>
     </div>
 
-    <div class="btn-group">
-      <button class="btn btn-danger" id="alert">Alert!</button>
-      <button class="btn btn-warning" id="confirm">Prompt!</button>
-      <button class="btn btn-primary" id="prompt">Confirm!</button>
+    <div class="row">
+      <div class="span1 offset1">
+        <div class="btn-group">
+          <button class="btn btn-danger" id="alert">Alert!</button>
+          <button class="btn btn-warning" id="confirm">Prompt!</button>
+          <button class="btn btn-primary" id="prompt">Confirm!</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://raw.github.com/fabien-d/alertify.js/master/lib/alertify.min.js"></script>
     <script>
-      var lAlert    = document.getElementById("alert"),
-          lConfirm  = document.getElementById("confirm"),
-          lPrompt   = document.getElementById("prompt"),
+      var lAlert   = document.getElementById("alert"),
+          lConfirm = document.getElementById("confirm"),
+          lPrompt  = document.getElementById("prompt"),
 
-          ok        = "OK",
-          cancel    = "CANCEL",
+          ok     = "OK",
+          cancel = "CANCEL",
+
           setLabel;
 
       setLabel = function (reset) {
@@ -57,7 +62,7 @@
         setLabel(true);
         alertify.prompt("<p>This is a prompt box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e, str) {
           if (e) {
-            alertify.success("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str);
+            alertify.success("Oh sit, yo ass clicked '" + alertify.labels.ok + "'' and typed in: " + str);
           } else {
             alertify.error("You've clicked '" + alertify.labels.cancel + "'");
           }
