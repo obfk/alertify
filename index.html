@@ -4,9 +4,9 @@
     <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css' rel='stylesheet' />
 
     <!-- include the core styles -->
-    <link rel="stylesheet" href="alertify.core.css" />
+    <link rel="stylesheet" href="http://fabien-d.github.com/alertify.js/assets/js/lib/alertify/alertify.core.css" />
     <!-- include a theme, can be included into the core instead of 2 separate files -->
-    <link rel="stylesheet" href="alertify.default.css" />
+    <link rel="stylesheet" href="http://fabien-d.github.com/alertify.js/assets/js/lib/alertify/alertify.default.css" />
   </head>
 
   <body class="container-fluid">
@@ -15,14 +15,56 @@
     </div>
 
     <div class="btn-group">
-      <button class="btn btn-danger">Alert!</button>
-      <button class="btn btn-warning">Prompt!</button>
-      <button class="btn btn-primary">Confirm!</button>
+      <button class="btn btn-danger" id="alert">Alert!</button>
+      <button class="btn btn-warning" id="confirm">Prompt!</button>
+      <button class="btn btn-primary" id="prompt">Confirm!</button>
     </div>
+
+    <script src="https://raw.github.com/fabien-d/alertify.js/master/lib/alertify.min.js"></script>
+    <script>
+      var lAlert    = document.getElementById("alert"),
+          lConfirm  = document.getElementById("confirm"),
+          lPrompt   = document.getElementById("prompt"),
+
+          ok        = "OK",
+          cancel    = "CANCEL",
+          setLabel;
+
+      setLabel = function (reset) {
+        reset = reset || false;
+        alertify.labels.ok     = (ok.value && !reset) ? ok.value : "OK";
+        alertify.labels.cancel = (cancel.value && !reset) ? cancel.value : "Cancel";
+      };
+
+      lAlert.onclick = function () {
+        setLabel(true);
+        alertify.alert("Ohai, this is an alert box.");
+        return false;
+      };
+
+      lConfirm.onclick = function () {
+        setLabel(true);
+        alertify.confirm("<p>This is a confirm box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e) {
+          if (e) {
+            alertify.success("You've clicked '" + alertify.labels.ok + "'");
+          } else { alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+          }
+        });
+        return false;
+      };
+
+      lPrompt.onclick = function () {
+        setLabel(true);
+        alertify.prompt("<p>This is a prompt box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e, str) {
+          if (e) {
+            alertify.success("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str);
+          } else {
+            alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+          }
+        }, "Default Value");
+        return false;
+      };
+
+    </script>
   </body>
-
-    <!-- ideally at the bottom of the page -->
-    <!-- also works in the <head> -->
-    <script src="alertify.min.js"></script>
-
 </html>
